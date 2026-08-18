@@ -163,7 +163,7 @@ export function TrendChart({
             tick={{ fill: "var(--color-muted-foreground)", fontSize: 10 }}
             stroke="var(--color-border)"
             interval="preserveStartEnd"
-            minTickGap={36}
+            minTickGap={52}
           />
           <YAxis
             tick={{ fill: "var(--color-muted-foreground)", fontSize: 10 }}
