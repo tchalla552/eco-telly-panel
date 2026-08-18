@@ -11,7 +11,7 @@ export function ConnectionBar({
 }: {
   mode: SourceMode;
   state: ConnectionState;
-  detail?: string;
+  detail?: string | undefined;
   onConnect: () => void;
   onDisconnect: () => void;
 }) {

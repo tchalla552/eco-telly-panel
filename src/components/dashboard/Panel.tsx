@@ -34,7 +34,7 @@ export function Metric({
   label: string;
   value: string;
   unit?: string;
-  hint?: string;
+  hint?: string | undefined;
   tone?: "solar" | "battery" | "warning" | "default";
 }) {
   const toneClass =
