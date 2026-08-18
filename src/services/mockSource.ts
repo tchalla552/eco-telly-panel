@@ -19,7 +19,7 @@ export class MockSource implements TelemetrySource {
   async connect() {
     if (this.timer) return;
     this.state.emit("connecting", "Loading fixture");
-    const records = fixture as Telemetry[];
+    const records = fixture as unknown as Telemetry[];
     this.state.emit("connected", "Mock replay");
     const push = () => {
       const record = records[this.index % records.length];
