@@ -43,7 +43,7 @@ export const Route = createFileRoute("/")({
 function ChartBlock({
   history,
   options,
-  height = 168,
+  height = 204,
 }: {
   history: HistoryPoint[];
   options: SeriesKey[];
