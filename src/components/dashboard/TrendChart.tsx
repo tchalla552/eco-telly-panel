@@ -173,11 +173,15 @@ export function TrendChart({
           </defs>
           <CartesianGrid stroke="var(--color-border)" strokeDasharray="2 4" vertical={false} />
           <XAxis
-            dataKey="label"
+            dataKey="t"
+            type="number"
+            scale="time"
+            domain={["dataMin", "dataMax"]}
+            ticks={ticks}
+            tickFormatter={(v: number) => clockLabel(v, true)}
             tick={{ fill: "var(--color-muted-foreground)", fontSize: 10 }}
             stroke="var(--color-border)"
-            interval="preserveStartEnd"
-            minTickGap={52}
+            minTickGap={40}
           />
           <YAxis
             tick={{ fill: "var(--color-muted-foreground)", fontSize: 10 }}
