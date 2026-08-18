@@ -13,14 +13,13 @@ export function energyText(wh: number | undefined): string {
   return `${value} ${unit}`;
 }
 
-/** Concise local clock label — no seconds. */
+/** Concise local clock label — no seconds. Compact drops the AM/PM suffix. */
 export function clockLabel(t: number, compact = false): string {
-  const d = new Date(t);
-  return d.toLocaleTimeString([], {
+  const label = new Date(t).toLocaleTimeString([], {
     hour: "numeric",
     minute: "2-digit",
-    hour12: !compact,
   });
+  return compact ? label.replace(/\s*(AM|PM|a\.m\.|p\.m\.)$/i, "") : label;
 }
 
 export function num(v: number | undefined, decimals = 1): string {
