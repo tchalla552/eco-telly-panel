@@ -12,7 +12,7 @@ import {
   type SeriesKey,
 } from "@/components/dashboard/TrendChart";
 import { THRESHOLDS, THRESHOLD_LABEL, levelFor } from "@/config/thresholds";
-import { clockLabel, energyText, formatEnergyWh, num } from "@/lib/format";
+import { clockLabel, energyText, num } from "@/lib/format";
 import { QUALITY_LABEL } from "@/types/telemetry";
 import type { HistoryPoint, TimeRange } from "@/types/telemetry";
 
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/")({
 function ChartBlock({
   history,
   options,
-  height = 168,
+  height = 204,
 }: {
   history: HistoryPoint[];
   options: SeriesKey[];
@@ -75,7 +75,7 @@ function Dashboard() {
 
   const t = telemetry;
   const stage = t?.controller.charging_status;
-  const genToday = formatEnergyWh(t?.solar.generation_today_wh);
+  
   const ctrlLevel = levelFor(t?.controller.temperature_f, THRESHOLDS.controllerTemperatureF);
   const battLevel = levelFor(t?.battery.temperature_f, THRESHOLDS.batteryTemperatureF);
 
@@ -101,7 +101,7 @@ function Dashboard() {
 
       {/* Top summary — what is the system doing right now? */}
       <section className="panel mb-4 p-4 sm:p-6">
-        <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-5 lg:grid-cols-3">
           <div className="col-span-2 lg:col-span-1">
             <div className="text-[11px] uppercase tracking-[0.1em] text-muted-foreground">
               Solar power now
@@ -126,12 +126,6 @@ function Dashboard() {
             unit="A"
             tone="battery"
           />
-          <Metric
-            label="Generated today"
-            value={genToday.value}
-            unit={genToday.unit}
-            tone="solar"
-          />
         </div>
 
         {/* Secondary line: reported SOC stays deliberately understated. */}
@@ -143,8 +137,8 @@ function Dashboard() {
             </span>
           </span>
           <span className="italic opacity-80">Estimate only</span>
-          <span className="ml-auto">Lifetime {energyText(t?.solar.generation_total_wh)}</span>
         </div>
+
       </section>
 
       <div className="grid items-start gap-4 lg:grid-cols-2">
@@ -152,16 +146,19 @@ function Dashboard() {
           title="Solar array"
           meta={<StatusPill tone="solar">{num(t?.solar.voltage_v, 1)} V</StatusPill>}
         >
-          <div className="mb-4 grid grid-cols-3 gap-4">
-            <Metric
-              label="PV power"
-              value={t ? String(t.solar.power_w) : "—"}
-              unit="W"
-              tone="solar"
-            />
+          <div className="mb-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
+            <div className="hidden sm:block">
+              <Metric
+                label="PV power"
+                value={t ? String(t.solar.power_w) : "—"}
+                unit="W"
+                tone="solar"
+              />
+            </div>
             <Metric label="PV voltage" value={num(t?.solar.voltage_v, 1)} unit="V" />
             <Metric label="PV current" value={num(t?.solar.current_a, 2)} unit="A" />
           </div>
+
           <ChartBlock history={history} options={["pv_power_w"]} />
           <div className="mt-3">
             <Row label="Generation today" value={energyText(t?.solar.generation_today_wh)} />
