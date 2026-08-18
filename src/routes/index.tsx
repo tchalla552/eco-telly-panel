@@ -205,7 +205,6 @@ function Dashboard() {
               }
             />
             <Row label="Chemistry" value={t?.battery.chemistry ?? "—"} />
-            <Row label="Charging mode" value={<ChargeStagePill status={stage} />} />
           </div>
         </Panel>
 
