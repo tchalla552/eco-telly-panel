@@ -142,10 +142,7 @@ function Dashboard() {
       </section>
 
       <div className="grid items-start gap-4 lg:grid-cols-2">
-        <Panel
-          title="Solar array"
-          meta={<StatusPill tone="solar">{num(t?.solar.voltage_v, 1)} V</StatusPill>}
-        >
+        <Panel title="Solar array">
           <div className="mb-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
             <div className="hidden sm:block">
               <Metric
@@ -163,7 +160,7 @@ function Dashboard() {
           <div className="mt-3">
             <Row label="Generation today" value={energyText(t?.solar.generation_today_wh)} />
             <Row
-              label="Max charging power today"
+              label="Peak solar power today"
               value={`${t ? t.solar.max_power_today_w : "—"} W`}
             />
             <Row label="Lifetime generation" value={energyText(t?.solar.generation_total_wh)} />

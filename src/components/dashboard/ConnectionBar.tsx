@@ -16,20 +16,30 @@ export function ConnectionBar({
   onDisconnect: () => void;
 }) {
   const connected = state === "connected";
+  const mock = mode === "mock";
+
+  // "Connected" is reserved for a real Web Bluetooth link; mock replay is data-only.
+  const label = connected
+    ? mock
+      ? "Data active"
+      : "Connected"
+    : state === "connecting"
+      ? mock
+        ? "Loading"
+        : "Connecting"
+      : state === "error"
+        ? "Error"
+        : mock
+          ? "Idle"
+          : "Disconnected";
 
   return (
     <div className="flex flex-wrap items-center gap-2">
       <StatusPill
-        tone={connected ? "battery" : state === "error" ? "danger" : "neutral"}
+        tone={connected ? (mock ? "accent" : "battery") : state === "error" ? "danger" : "neutral"}
         dot
       >
-        {connected
-          ? "Connected"
-          : state === "connecting"
-            ? "Connecting"
-            : state === "error"
-              ? "Error"
-              : "Disconnected"}
+        {label}
       </StatusPill>
       <StatusPill tone={mode === "mock" ? "warning" : "accent"}>
         {mode === "mock" ? "Mock" : "Live"}
