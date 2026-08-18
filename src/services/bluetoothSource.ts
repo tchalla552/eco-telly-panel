@@ -1,3 +1,4 @@
+/// <reference types="web-bluetooth" />
 import { Emitter } from "./emitter";
 import type { ConnectionState, Telemetry, TelemetrySource } from "@/types/telemetry";
 
