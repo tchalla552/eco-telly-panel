@@ -129,10 +129,24 @@ export function TrendChart({
   height?: number;
 }) {
   const spec = SERIES[series];
-  const points = useMemo(
-    () => data.map((p) => ({ ...p, label: clockLabel(p.t, true) })),
-    [data],
-  );
+  const points = data;
+
+  /** Evenly spaced wall-clock ticks so spacing reflects real elapsed time. */
+  const ticks = useMemo(() => {
+    if (points.length < 2) return [];
+    const first = points[0]!.t;
+    const last = points[points.length - 1]!.t;
+    const span = last - first;
+    if (span <= 0) return [first];
+    const steps = [
+      60_000, 2 * 60_000, 5 * 60_000, 10 * 60_000, 15 * 60_000, 30 * 60_000,
+      60 * 60_000, 2 * 3_600_000, 3 * 3_600_000, 6 * 3_600_000,
+    ];
+    const step = steps.find((s) => span / s <= 4) ?? steps[steps.length - 1]!;
+    const out: number[] = [];
+    for (let tick = Math.ceil(first / step) * step; tick <= last; tick += step) out.push(tick);
+    return out.length >= 2 ? out : [first, last];
+  }, [points]);
 
   if (points.length < 2) {
     return (
