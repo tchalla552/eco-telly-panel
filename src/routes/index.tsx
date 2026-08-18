@@ -160,7 +160,7 @@ function Dashboard() {
           <div className="mt-3">
             <Row label="Generation today" value={energyText(t?.solar.generation_today_wh)} />
             <Row
-              label="Max charging power today"
+              label="Peak solar power today"
               value={`${t ? t.solar.max_power_today_w : "—"} W`}
             />
             <Row label="Lifetime generation" value={energyText(t?.solar.generation_total_wh)} />
