@@ -146,16 +146,19 @@ function Dashboard() {
           title="Solar array"
           meta={<StatusPill tone="solar">{num(t?.solar.voltage_v, 1)} V</StatusPill>}
         >
-          <div className="mb-4 grid grid-cols-3 gap-4">
-            <Metric
-              label="PV power"
-              value={t ? String(t.solar.power_w) : "—"}
-              unit="W"
-              tone="solar"
-            />
+          <div className="mb-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
+            <div className="hidden sm:block">
+              <Metric
+                label="PV power"
+                value={t ? String(t.solar.power_w) : "—"}
+                unit="W"
+                tone="solar"
+              />
+            </div>
             <Metric label="PV voltage" value={num(t?.solar.voltage_v, 1)} unit="V" />
             <Metric label="PV current" value={num(t?.solar.current_a, 2)} unit="A" />
           </div>
+
           <ChartBlock history={history} options={["pv_power_w"]} />
           <div className="mt-3">
             <Row label="Generation today" value={energyText(t?.solar.generation_today_wh)} />
