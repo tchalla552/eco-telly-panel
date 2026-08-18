@@ -95,7 +95,7 @@ function Dashboard() {
         />
       </section>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid items-start gap-4 lg:grid-cols-2">
         <Panel
           title="Solar array"
           meta={<StatusPill tone="solar">{num(t?.pv_voltage, 1)} V</StatusPill>}
