@@ -223,7 +223,7 @@ function Dashboard() {
               value={num(t?.controller.temperature_f, 1)}
               unit="°F"
               tone={ctrlLevel === "nominal" ? "default" : "warning"}
-              hint={`Warm above ${THRESHOLDS.controllerTemperatureF.elevated} °F`}
+              hint={ctrlLevel === "nominal" ? undefined : THRESHOLD_LABEL[ctrlLevel]}
             />
             <Metric label="Load power" value={t ? String(t.load.power_w) : "—"} unit="W" />
             <div>
