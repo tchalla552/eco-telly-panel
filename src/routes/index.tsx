@@ -12,7 +12,7 @@ import {
   type SeriesKey,
 } from "@/components/dashboard/TrendChart";
 import { THRESHOLDS, THRESHOLD_LABEL, levelFor } from "@/config/thresholds";
-import { clockLabel, energyText, formatEnergyWh, num } from "@/lib/format";
+import { clockLabel, energyText, num } from "@/lib/format";
 import { QUALITY_LABEL } from "@/types/telemetry";
 import type { HistoryPoint, TimeRange } from "@/types/telemetry";
 
