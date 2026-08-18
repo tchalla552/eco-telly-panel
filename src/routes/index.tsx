@@ -75,7 +75,7 @@ function Dashboard() {
 
   const t = telemetry;
   const stage = t?.controller.charging_status;
-  const genToday = formatEnergyWh(t?.solar.generation_today_wh);
+  
   const ctrlLevel = levelFor(t?.controller.temperature_f, THRESHOLDS.controllerTemperatureF);
   const battLevel = levelFor(t?.battery.temperature_f, THRESHOLDS.batteryTemperatureF);
 
