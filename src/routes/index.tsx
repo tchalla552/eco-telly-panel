@@ -246,18 +246,21 @@ function Dashboard() {
               <div className="readout mt-1 text-sm">{t?.device.model ?? "ML2430"}</div>
               <div className="mt-1 text-[11px] text-muted-foreground">
                 {t?.device.bluetoothName ?? "BT-TH-XXXXXXXX"} ·{" "}
-                {mode === "mock" ? "fixture replay" : "Web Bluetooth (BT-1)"}
+                {mode === "mock" ? "Mock fixture" : "Web Bluetooth (BT-1)"}
               </div>
-              <div className="mt-2">
-                <StatusPill
-                  tone={
-                    state === "connected" ? "battery" : state === "error" ? "danger" : "neutral"
-                  }
-                  dot
-                >
-                  {state}
-                </StatusPill>
-              </div>
+              {/* A connection badge is only meaningful for a real Bluetooth link. */}
+              {mode === "live" ? (
+                <div className="mt-2">
+                  <StatusPill
+                    tone={
+                      state === "connected" ? "battery" : state === "error" ? "danger" : "neutral"
+                    }
+                    dot
+                  >
+                    {state}
+                  </StatusPill>
+                </div>
+              ) : null}
             </div>
           </div>
         </Panel>
