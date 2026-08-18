@@ -101,7 +101,7 @@ function Dashboard() {
 
       {/* Top summary — what is the system doing right now? */}
       <section className="panel mb-4 p-4 sm:p-6">
-        <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-5 lg:grid-cols-3">
           <div className="col-span-2 lg:col-span-1">
             <div className="text-[11px] uppercase tracking-[0.1em] text-muted-foreground">
               Solar power now
@@ -126,12 +126,6 @@ function Dashboard() {
             unit="A"
             tone="battery"
           />
-          <Metric
-            label="Generated today"
-            value={genToday.value}
-            unit={genToday.unit}
-            tone="solar"
-          />
         </div>
 
         {/* Secondary line: reported SOC stays deliberately understated. */}
@@ -143,8 +137,8 @@ function Dashboard() {
             </span>
           </span>
           <span className="italic opacity-80">Estimate only</span>
-          <span className="ml-auto">Lifetime {energyText(t?.solar.generation_total_wh)}</span>
         </div>
+
       </section>
 
       <div className="grid items-start gap-4 lg:grid-cols-2">
