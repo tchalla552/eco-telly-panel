@@ -12,7 +12,17 @@ const POLL_MS = 2000;
 /** Spacing used when projecting the fixture onto a synthetic "today" series. */
 const SEED_SPACING_MS = 5 * 60_000;
 
-const RECORDS = fixture as unknown as RawControllerFrame[];
+const FIXTURE = fixture as unknown as RawControllerFrame[];
+
+/**
+ * The fixture is a rising half-day. Replaying it raw would snap from the last
+ * record back to the first (14.1 V → 13.2 V). Mirroring it produces a plausible
+ * afternoon decline so the loop stays continuous and gradual.
+ */
+const RECORDS: RawControllerFrame[] = [
+  ...FIXTURE,
+  ...FIXTURE.slice(1, -1).reverse(),
+];
 
 /**
  * Replays a local JSON fixture on a loop, as if the controller were polled live.
