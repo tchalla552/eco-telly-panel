@@ -24,6 +24,7 @@ export class MockSource implements TelemetrySource {
     const push = () => {
       const record = records[this.index % records.length];
       this.index += 1;
+      if (!record) return;
       this.data.emit({ ...record, timestamp: new Date().toISOString() });
     };
     push();
