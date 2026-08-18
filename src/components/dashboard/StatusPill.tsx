@@ -22,8 +22,8 @@ export function StatusPill({
   children: React.ReactNode;
   tone?: Tone;
   dot?: boolean;
-  className?: string;
-  title?: string;
+  className?: string | undefined;
+  title?: string | undefined;
 }) {
   return (
     <span
