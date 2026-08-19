@@ -102,4 +102,4 @@ This project uses React, TypeScript, TanStack Start, Vite, Tailwind CSS, and Rec
 
 ## License
 
-No open-source license has been selected yet. Until one is added, all rights are reserved by the copyright holder.
+Licensed under the [MIT License](LICENSE). Copyright (c) 2026 Neil Chapman.

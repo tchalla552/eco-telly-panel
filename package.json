@@ -1,6 +1,7 @@
 {
   "name": "eco-telly-panel",
   "description": "A browser-based Bluetooth dashboard for compatible ML2430 solar charge controllers.",
+  "license": "MIT",
   "private": true,
   "sideEffects": false,
   "type": "module",
