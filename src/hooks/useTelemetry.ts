@@ -1,11 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createTelemetrySource, resolveMode } from "@/services/telemetryService";
-import type {
-  ConnectionState,
-  HistoryPoint,
-  SourceMode,
-  Telemetry,
-} from "@/types/telemetry";
+import type { ConnectionState, HistoryPoint, SourceMode, Telemetry } from "@/types/telemetry";
 
 /**
  * In-memory retention only. A persistent store (file, IndexedDB, backend)

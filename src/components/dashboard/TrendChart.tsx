@@ -139,8 +139,16 @@ export function TrendChart({
     const span = last - first;
     if (span <= 0) return [first];
     const steps = [
-      60_000, 2 * 60_000, 5 * 60_000, 10 * 60_000, 15 * 60_000, 30 * 60_000,
-      60 * 60_000, 2 * 3_600_000, 3 * 3_600_000, 6 * 3_600_000,
+      60_000,
+      2 * 60_000,
+      5 * 60_000,
+      10 * 60_000,
+      15 * 60_000,
+      30 * 60_000,
+      60 * 60_000,
+      2 * 3_600_000,
+      3 * 3_600_000,
+      6 * 3_600_000,
     ];
     const step = steps.find((s) => span / s <= 4) ?? steps[steps.length - 1]!;
     const out: number[] = [];

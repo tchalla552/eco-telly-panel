@@ -1,12 +1,7 @@
 import { BluetoothSource } from "./bluetoothSource";
 import { MockSource } from "./mockSource";
 import { CHARGING_STATUSES } from "@/types/telemetry";
-import type {
-  ChargingStatus,
-  SourceMode,
-  Telemetry,
-  TelemetrySource,
-} from "@/types/telemetry";
+import type { ChargingStatus, SourceMode, Telemetry, TelemetrySource } from "@/types/telemetry";
 
 /** `?mock=1` forces the fixture replay source. */
 export function resolveMode(search?: string): SourceMode {
@@ -49,14 +44,11 @@ export interface RawControllerFrame {
   power_generation_total?: number;
 }
 
-const n = (v: unknown, fallback = 0) =>
-  typeof v === "number" && isFinite(v) ? v : fallback;
+const n = (v: unknown, fallback = 0) => (typeof v === "number" && isFinite(v) ? v : fallback);
 
 function chargingStatus(value: unknown): ChargingStatus {
   const s = typeof value === "string" ? value.toLowerCase() : "";
-  return (CHARGING_STATUSES as string[]).includes(s)
-    ? (s as ChargingStatus)
-    : "deactivated";
+  return (CHARGING_STATUSES as string[]).includes(s) ? (s as ChargingStatus) : "deactivated";
 }
 
 /** Converts a raw frame into the unit-explicit normalized model. */
@@ -79,9 +71,7 @@ export function normalize(raw: RawControllerFrame): Telemetry {
     battery: {
       voltage_v: n(raw.battery_voltage),
       charge_current_a: n(raw.battery_current),
-      ...(typeof soc === "number" && isFinite(soc)
-        ? { reported_soc_percent: soc }
-        : {}),
+      ...(typeof soc === "number" && isFinite(soc) ? { reported_soc_percent: soc } : {}),
       temperature_f: n(raw.battery_temperature),
       chemistry: raw.battery_type === "lithium" ? "LiFePO₄" : (raw.battery_type ?? "unknown"),
     },

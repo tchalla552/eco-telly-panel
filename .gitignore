@@ -15,6 +15,12 @@ dist-ssr
 .tanstack/**
 .nitro
 *.local
+.cert/
+
+# Local environment and secret files (keep sanitized examples trackable)
+.env
+.env.*
+!.env.example
 
 # Wrangler / Cloudflare
 .wrangler/

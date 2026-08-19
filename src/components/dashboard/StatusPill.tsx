@@ -76,8 +76,7 @@ export function ChargeStagePill({
   status: ChargingStatus | undefined;
   className?: string;
 }) {
-  const active =
-    status !== undefined && status !== "deactivated" && status !== "activated";
+  const active = status !== undefined && status !== "deactivated" && status !== "activated";
   return (
     <StatusPill
       tone={chargeTone(status)}

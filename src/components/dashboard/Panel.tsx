@@ -71,10 +71,7 @@ export function Row({
     <div className="flex items-center justify-between gap-3 border-b border-border/60 py-2 last:border-0">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span
-        className={cn(
-          "readout text-sm",
-          tone === "warning" ? "text-warning" : "text-foreground",
-        )}
+        className={cn("readout text-sm", tone === "warning" ? "text-warning" : "text-foreground")}
       >
         {value}
       </span>

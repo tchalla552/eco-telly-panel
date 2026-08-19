@@ -1,11 +1,5 @@
 export type ChargingStatus =
-  | "deactivated"
-  | "activated"
-  | "mppt"
-  | "equalizing"
-  | "boost"
-  | "floating"
-  | "current limiting";
+  "deactivated" | "activated" | "mppt" | "equalizing" | "boost" | "floating" | "current limiting";
 
 export const CHARGING_STATUSES: ChargingStatus[] = [
   "deactivated",

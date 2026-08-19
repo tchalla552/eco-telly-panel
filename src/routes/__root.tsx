@@ -78,7 +78,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "P1 Solar Monitor" },
-      { name: "description", content: "Bluetooth dashboard for a PQ2430 / ML2430 MPPT solar charge controller." },
+      {
+        name: "description",
+        content: "Bluetooth dashboard for a PQ2430 / ML2430 MPPT solar charge controller.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

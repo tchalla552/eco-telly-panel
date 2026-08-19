@@ -75,7 +75,7 @@ function Dashboard() {
 
   const t = telemetry;
   const stage = t?.controller.charging_status;
-  
+
   const ctrlLevel = levelFor(t?.controller.temperature_f, THRESHOLDS.controllerTemperatureF);
   const battLevel = levelFor(t?.battery.temperature_f, THRESHOLDS.batteryTemperatureF);
 
@@ -86,7 +86,8 @@ function Dashboard() {
           <div>
             <h1 className="text-lg font-semibold tracking-tight sm:text-xl">P1 Solar Monitor</h1>
             <p className="readout text-xs text-muted-foreground">
-              {t?.device.model ?? "ML2430"} · BT-TH-XXXXXXXX · {t?.battery.chemistry ?? "LiFePO₄"}
+              {t?.device.model ?? "ML2430"} · {t?.device.bluetoothName ?? "BT-TH module"} ·{" "}
+              {t?.battery.chemistry ?? "LiFePO₄"}
             </p>
           </div>
           <ConnectionBar
@@ -138,7 +139,6 @@ function Dashboard() {
           </span>
           <span className="italic opacity-80">Estimate only</span>
         </div>
-
       </section>
 
       <div className="grid items-start gap-4 lg:grid-cols-2">
@@ -169,12 +169,7 @@ function Dashboard() {
 
         <Panel title="Battery" meta={<ChargeStagePill status={stage} />}>
           <div className="mb-4 grid grid-cols-3 gap-4">
-            <Metric
-              label="Voltage"
-              value={num(t?.battery.voltage_v, 2)}
-              unit="V"
-              tone="battery"
-            />
+            <Metric label="Voltage" value={num(t?.battery.voltage_v, 2)} unit="V" tone="battery" />
             <Metric
               label="Charge current"
               value={num(t?.battery.charge_current_a, 2)}
@@ -188,10 +183,7 @@ function Dashboard() {
               tone={battLevel === "nominal" ? "default" : "warning"}
             />
           </div>
-          <ChartBlock
-            history={history}
-            options={["battery_voltage_v", "battery_current_a"]}
-          />
+          <ChartBlock history={history} options={["battery_voltage_v", "battery_current_a"]} />
           <div className="mt-3">
             <Row
               label="Reported SOC"
@@ -245,7 +237,7 @@ function Dashboard() {
               </div>
               <div className="readout mt-1 text-sm">{t?.device.model ?? "ML2430"}</div>
               <div className="mt-1 text-[11px] text-muted-foreground">
-                {t?.device.bluetoothName ?? "BT-TH-XXXXXXXX"} ·{" "}
+                {t?.device.bluetoothName ?? "BT-TH module"} ·{" "}
                 {mode === "mock" ? "Mock fixture" : "Web Bluetooth (BT-1)"}
               </div>
               {/* A connection badge is only meaningful for a real Bluetooth link. */}

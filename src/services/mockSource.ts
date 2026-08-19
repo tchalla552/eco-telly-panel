@@ -1,12 +1,7 @@
 import fixture from "./fixtures/telemetry-fixture.json";
 import { Emitter } from "./emitter";
 import { normalize, type RawControllerFrame } from "./telemetryService";
-import type {
-  ConnectionState,
-  HistoryPoint,
-  Telemetry,
-  TelemetrySource,
-} from "@/types/telemetry";
+import type { ConnectionState, HistoryPoint, Telemetry, TelemetrySource } from "@/types/telemetry";
 
 const POLL_MS = 2000;
 /** Spacing used when projecting the fixture onto a synthetic "today" series. */
@@ -19,10 +14,7 @@ const FIXTURE = fixture as unknown as RawControllerFrame[];
  * record back to the first (14.1 V → 13.2 V). Mirroring it produces a plausible
  * afternoon decline so the loop stays continuous and gradual.
  */
-const RECORDS: RawControllerFrame[] = [
-  ...FIXTURE,
-  ...FIXTURE.slice(1, -1).reverse(),
-];
+const RECORDS: RawControllerFrame[] = [...FIXTURE, ...FIXTURE.slice(1, -1).reverse()];
 
 /**
  * Replays a local JSON fixture on a loop, as if the controller were polled live.
@@ -39,7 +31,7 @@ export class MockSource implements TelemetrySource {
   async connect() {
     if (this.timer) return;
     this.state.emit("connecting", "Loading fixture");
-    this.state.emit("connected", "Mock replay · BT-TH-XXXXXXXX");
+    this.state.emit("connected", "Mock replay · BT-TH module");
     const push = () => {
       const record = RECORDS[this.index % RECORDS.length];
       this.index += 1;
